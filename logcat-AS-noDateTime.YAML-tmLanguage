@@ -1,0 +1,121 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: logcat (AS-noDateTime)
+scopeName: source.logcat.AS-noDateTime
+fileTypes: []
+firstLineMatch: -* beginning of /dev/log/.*
+
+# Syntax Definitions
+# http://docs.sublimetext.info/en/latest/extensibility/syntaxdefs.html
+
+# Example
+# Generic format of a logcat from Android Studio with all headers except Date and Time selected:
+# https://regex101.com/r/EjmB7M/1
+
+# match: '(?x)^
+# ([\d]+)-([\d]+)/
+# (.+\.+.+)\s
+# ([VDIWEF])/(.*?):\s+
+# (.*)
+# $'
+
+# captures:
+#   '1': pid
+#   '2': tid
+#   '3': package
+#   '4': log type
+#   '5': log tag
+#   '6': log message
+
+patterns:
+- include: '#verbose'
+- include: '#debug'
+- include: '#info'
+- include: '#warn'
+- include: '#error'
+
+repository:
+  verbose:
+    patterns:
+    - name: meta.logcat.line.verbose
+      match: '(?x)^
+            ([\d]+)-([\d]+)/
+            (.+\.+.+)\s
+            ([V])/(.*?):\s+
+            (.*)
+            $'
+      captures:
+        '1': {name: constant.numeric.logcat.pid}
+        '2': {name: constant.numeric.logcat.tid}
+        '3': {name: entity.name.package }
+        '4': {name: comment.logcat.type}
+        '5': {name: entity.name.tag.logcat.tag}
+        '6': {name: comment.logcat.msg}
+
+  debug:
+    patterns:
+    - name: meta.logcat.line.debug
+      match: '(?x)^
+            ([\d]+)-([\d]+)/
+            (.+\.+.+)\s
+            ([D])/(.*?):\s+
+            (.*)
+            $'
+      captures:
+        '1': {name: constant.numeric.logcat.pid}
+        '2': {name: constant.numeric.logcat.tid}
+        '3': {name: entity.name.package }
+        '4': {name: comment.logcat.type}
+        '5': {name: entity.name.tag.logcat.tag}
+        '6': {name: comment.logcat.msg}
+
+  info:
+    patterns:
+    - name: meta.logcat.line.info
+      match: '(?x)^
+            ([\d]+)-([\d]+)/
+            (.+\.+.+)\s
+            ([I])/(.*?):\s+
+            (.*)
+            $'
+      captures:
+        '1': {name: constant.numeric.logcat.pid}
+        '2': {name: constant.numeric.logcat.tid}
+        '3': {name: entity.name.package }
+        '4': {name: comment.logcat.type}
+        '5': {name: entity.name.tag.logcat.tag}
+        '6': {name: comment.logcat.msg}
+
+  warn:
+    patterns:
+    - name: meta.logcat.line.warn
+      match: '(?x)^
+            ([\d]+)-([\d]+)/
+            (.+\.+.+)\s
+            ([W])/(.*?):\s+
+            (.*)
+            $'
+      captures:
+        '1': {name: constant.numeric.logcat.pid}
+        '2': {name: constant.numeric.logcat.tid}
+        '3': {name: entity.name.package }
+        '4': {name: comment.logcat.type}
+        '5': {name: entity.name.tag.logcat.tag}
+        '6': {name: comment.logcat.msg}
+
+  error:
+    patterns:
+    - name: meta.logcat.line.error
+      match: '(?x)^
+            ([\d]+)-([\d]+)/
+            (.+\.+.+)\s
+            ([EF])/(.*?):\s+
+            (.*)
+            $'
+      captures:
+        '1': {name: constant.numeric.logcat.pid}
+        '2': {name: constant.numeric.logcat.tid}
+        '3': {name: entity.name.package }
+        '4': {name: comment.logcat.type}
+        '5': {name: entity.name.tag.logcat.tag}
+        '6': {name: comment.logcat.msg}
