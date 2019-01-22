@@ -1,0 +1,139 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: logcat (AS-default)
+scopeName: source.logcat.AS-default
+fileTypes: []
+firstLineMatch: -* beginning of /dev/log/.*
+
+# Syntax Definitions
+# http://docs.sublimetext.info/en/latest/extensibility/syntaxdefs.html
+
+# Example
+# Generic format of a logcat from Android Studio with "default" headers:
+# https://regex101.com/r/Oj13DB/2
+
+# match: '(?x)^
+# ([\d-]+)\s+([\d:.]+)\s+
+# ([\d]+)-([\d]+)/
+# (.+\.+.+)\s
+# ([VDIWEF])/(.*?):\s+
+# (.*)
+# $'
+
+# captures:
+#   '1': date
+#   '2': time
+#   '3': pid
+#   '4': tid
+#   '5': package
+#   '6': log type
+#   '7': log tag
+#   '8': log message
+
+patterns:
+- include: '#verbose'
+- include: '#debug'
+- include: '#info'
+- include: '#warn'
+- include: '#error'
+
+repository:
+  verbose:
+    patterns:
+    - name: meta.logcat.line.verbose
+      match: '(?x)^
+            ([\d-]+)\s+([\d:.]+)\s+
+            ([\d]+)-([\d]+)/
+            (.+\.+.+)\s
+            ([V])/(.*?):\s+
+            (.*)
+            $'
+      captures:
+        '1': {name: string.logcat.timestamp.date}
+        '2': {name: string.logcat.timestamp.time}
+        '3': {name: constant.numeric.logcat.pid }
+        '4': {name: constant.numeric.logcat.tid}
+        '5': {name: entity.name.package}
+        '6': {name: entity.name.function.logcat.type}
+        '7': {name: entity.name.tag.logcat.tag}
+        '8': {name: entity.name.function.logcat.msg}
+
+  debug:
+    patterns:
+    - name: meta.logcat.line.debug
+      match: '(?x)^
+            ([\d-]+)\s+([\d:.]+)\s+
+            ([\d]+)-([\d]+)/
+            (.+\.+.+)\s
+            ([D])/(.*?):\s+
+            (.*)
+            $'
+      captures:
+        '1': {name: string.logcat.timestamp.date}
+        '2': {name: string.logcat.timestamp.time}
+        '3': {name: constant.numeric.logcat.pid }
+        '4': {name: constant.numeric.logcat.tid}
+        '5': {name: entity.name.package}
+        '6': {name: entity.name.function.logcat.type}
+        '7': {name: entity.name.tag.logcat.tag}
+        '8': {name: entity.name.function.logcat.msg}
+
+  info:
+    patterns:
+    - name: meta.logcat.line.info
+      match: '(?x)^
+            ([\d-]+)\s+([\d:.]+)\s+
+            ([\d]+)-([\d]+)/
+            (.+\.+.+)\s
+            ([I])/(.*?):\s+
+            (.*)
+            $'
+      captures:
+        '1': {name: string.logcat.timestamp.date}
+        '2': {name: string.logcat.timestamp.time}
+        '3': {name: constant.numeric.logcat.pid }
+        '4': {name: constant.numeric.logcat.tid}
+        '5': {name: entity.name.package}
+        '6': {name: entity.name.function.logcat.type}
+        '7': {name: entity.name.tag.logcat.tag}
+        '8': {name: entity.name.function.logcat.msg}
+
+  warn:
+    patterns:
+    - name: meta.logcat.line.warn
+      match: '(?x)^
+            ([\d-]+)\s+([\d:.]+)\s+
+            ([\d]+)-([\d]+)/
+            (.+\.+.+)\s
+            ([W])/(.*?):\s+
+            (.*)
+            $'
+      captures:
+        '1': {name: string.logcat.timestamp.date}
+        '2': {name: string.logcat.timestamp.time}
+        '3': {name: constant.numeric.logcat.pid }
+        '4': {name: constant.numeric.logcat.tid}
+        '5': {name: entity.name.package}
+        '6': {name: entity.name.function.logcat.type}
+        '7': {name: entity.name.tag.logcat.tag}
+        '8': {name: entity.name.function.logcat.msg}
+
+  error:
+    patterns:
+    - name: meta.logcat.line.error
+      match: '(?x)^
+            ([\d-]+)\s+([\d:.]+)\s+
+            ([\d]+)-([\d]+)/
+            (.+\.+.+)\s
+            ([EF])/(.*?):\s+
+            (.*)
+            $'
+      captures:
+        '1': {name: string.logcat.timestamp.date}
+        '2': {name: string.logcat.timestamp.time}
+        '3': {name: constant.numeric.logcat.pid }
+        '4': {name: constant.numeric.logcat.tid}
+        '5': {name: entity.name.package}
+        '6': {name: entity.name.function.logcat.type}
+        '7': {name: entity.name.tag.logcat.tag}
+        '8': {name: entity.name.function.logcat.msg}
