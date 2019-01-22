@@ -1,48 +1,83 @@
 # sublime-logcat
 
-Display colorized log captured by `adb logcat` in Sublime Text.
+Syntax Definitions combined with a "detection script" for Sublime Text to display colorized logcat output:
+
+ - captured by `adb logcat`, or
+ - copied from Android Studio
 
 ## Installation
 
-Choose either one of the following:
+Do either:
 
-- [Download](https://github.com/yinghau76/sublime-logcat/archive/master.zip) this repo, rename it to 'Logcat', and place it within your `Packages` folder. This can be found within Sublime Text at `Preferences > Browse Packages…`
-- Clone the repo into your `Packages` folder ` git clone git://github.com/yinghau76/sublime-logcat Logcat`
+- Download this repo, rename it to 'Logcat', and place it in your Sublime Text `Packages` folder.
+  - Open it from Sublime Text from: `Preferences` > `Browse Packages…`
+  
+- Clone the repo into your `Packages` folder.
 
 ## Usage
 
-1. <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>
+1. From `Tools` > `Command Palette` or <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>
 1. `detect logcat`
-1. You should see a colorized log. Enjoy!
+1. If a syntax is detected you will see the text colorized.  The according Syntax is selected under `View` > `Syntax`.
 
-## Formats
 
-Currently only the following formats are supported:
+## Supported Formats
 
-### brief 
+### Android Studio
 
-![](screen-shots/brief.png)
+- Set the logcat output style from Android Studio **[`Configure Locat Header`](https://developer.android.com/studio/debug/am-logcat#running)** dialog as follows:
 
-### printable 
+#### Default - `AS-default`
 
-![](screen-shots/printable.png)
+  > `2018-02-06 17:16:28.555 123-456/com.android.sample I/SampleTag: This is a sample message`
+  
+  - [x] Show date and time
+    - [ ] Show as seconds
+  - [x] Show process and thread IDs
+  - [x] Show package name
+  - [x] Show tag
+  
+#### No Date & Time - `AS-noDateTime`
 
-### threadtime 
+  > `123-456/com.android.sample I/SampleTag: This is a sample message`
+  
+  - [ ] Show date and time
+    - [ ] Show as seconds
+  - [x] Show process and thread IDs
+  - [x] Show package name
+  - [x] Show tag
+  
+    (As shown here:)
+  
+    ![Configure Locat Header dialog](screen-shots/Android-Studio-configure-Logcat-header.jpg)
+  
 
-![](screen-shots/threadtime.png)
+### [`adb logcat -v` formats](https://developer.android.com/studio/command-line/logcat#outputFormat)
 
-### time 
+#### brief 
 
-![](screen-shots/time.png)
+  ![](screen-shots/brief.png)
 
-### usec 
+#### printable 
 
-![](screen-shots/usec.png)
+  ![](screen-shots/printable.png)
 
-### year 
+#### threadtime 
 
-![](screen-shots/year.png)
+  ![](screen-shots/threadtime.png)
+
+#### time 
+
+  ![](screen-shots/time.png)
+
+#### usec 
+
+  ![](screen-shots/usec.png)
+
+#### year 
+
+  ![](screen-shots/year.png)
+
 
 ## Attribution
-
-Logcat language definitions are from https://github.com/leesei/logcat.tmLanguage.
+Some of the Logcat language definitions are from https://github.com/leesei/logcat.tmLanguage.
