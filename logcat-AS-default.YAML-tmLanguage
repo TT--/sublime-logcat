@@ -10,7 +10,7 @@ firstLineMatch: -* beginning of /dev/log/.*
 
 # Example
 # Generic format of a logcat from Android Studio with "default" headers:
-# https://regex101.com/r/Oj13DB/2
+# https://regex101.com/r/TyOYpC/2
 
 # match: '(?x)^
 # ([\d-]+)\s+([\d:.]+)\s+
