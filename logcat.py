@@ -21,6 +21,8 @@ class LogcatFormatDetectionCommand(sublime_plugin.TextCommand):
       return 'logcat-AS-default'
     if re.match(r'(?x)^([\d]+)-([\d]+)/(.+\.+.+)\s([VDIWEF])/(.*?):\s+(.*)', line):
       return 'logcat-AS-noDateTime'
+    if re.match(r'(?x)^(.+\.+.+)\s([VDIWEF])/(.*?):\s+(.*)', line):
+      return 'logcat-AS-packageAndTag'
     if re.match(r'(?x)^(?:\s*(\d+:)\s*)?([DEFIVW])/(.*)\(\s*(\d+)\):\s+(.*)', line):
       return 'logcat-brief'
     elif re.match(r'(?x)^(?:\s*(\d+:)\s*)?([\d-]+)\s+([\d:.]+)\s+([DEFIVW])/(.*?):\s+(.*)', line):

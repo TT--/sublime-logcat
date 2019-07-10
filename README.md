@@ -37,7 +37,17 @@ Do either:
   - [x] Show package name
   - [x] Show tag
   
-#### No Date & Time - `AS-noDateTime`
+#### Only Package Name and Tag - `AS-packageAndTag`
+
+  > `com.android.sample I/SampleTag: This is a sample message`
+  
+  - [ ] Show date and time
+    - [ ] Show as seconds
+  - [ ] Show process and thread IDs
+  - [x] Show package name
+  - [x] Show tag
+  
+#### No Date and Time - `AS-noDateTime`
 
   > `123-456/com.android.sample I/SampleTag: This is a sample message`
   
@@ -47,7 +57,7 @@ Do either:
   - [x] Show package name
   - [x] Show tag
   
-    (As shown here:)
+    (As a screenshot:)
   
     ![Configure Locat Header dialog](screen-shots/Android-Studio-configure-Logcat-header.jpg)
   
